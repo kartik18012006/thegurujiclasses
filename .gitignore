@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment variables and secrets
+.env
+.env.*
+
+# OAuth token generation scripts (contains secrets)
+getRefreshToken.cjs

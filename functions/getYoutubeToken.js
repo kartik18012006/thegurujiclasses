@@ -6,10 +6,17 @@
 const {google} = require("googleapis");
 const readline = require("readline");
 
-// OAuth 2.0 credentials (replace with your actual values)
-const CLIENT_ID = "415965526502-325ngs9h25qv5qhv3qc0umjgogbo2vj9.apps.googleusercontent.com";
-const CLIENT_SECRET = "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";
+// OAuth 2.0 credentials from environment variables
+const CLIENT_ID = process.env.YOUTUBE_CLIENT_ID;
+const CLIENT_SECRET = process.env.YOUTUBE_CLIENT_SECRET;
+const REFRESH_TOKEN = process.env.YOUTUBE_REFRESH_TOKEN;
 const REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"; // For installed applications
+
+// Validate required environment variables
+if (!CLIENT_ID || !CLIENT_SECRET) {
+  console.error("❌ Error: YOUTUBE_CLIENT_ID and YOUTUBE_CLIENT_SECRET must be set as environment variables");
+  process.exit(1);
+}
 
 // YouTube upload scope
 const SCOPES = ["https://www.googleapis.com/auth/youtube.upload"];
