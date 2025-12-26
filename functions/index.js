@@ -110,29 +110,18 @@ exports.uploadVideoToYouTube = onObjectFinalized(
         // Continue anyway - video processing should not depend on lesson update
       }
 
-      const clientId = process.env.YOUTUBE_CLIENT_ID;
-      const clientSecret = process.env.YOUTUBE_CLIENT_SECRET;
-      const refreshToken = process.env.YOUTUBE_REFRESH_TOKEN;
-
-      if (!clientId || !clientSecret || !refreshToken) {
-        logger.error("❌ Missing YouTube OAuth env vars");
-        const errorCode = "AUTH_ERROR";
-        if (lessonRef) {
-          await lessonRef.update({
-            status: "failed",
-            errorCode: errorCode,
-            errorMessage: "Missing YouTube OAuth credentials",
-            updatedAt: admin.firestore.FieldValue.serverTimestamp()
-          });
-        }
-        throw new Error(`AUTH_ERROR: Missing YouTube OAuth env vars`);
+      if (
+        !process.env.YOUTUBE_CLIENT_ID ||
+        !process.env.YOUTUBE_CLIENT_SECRET ||
+        !process.env.YOUTUBE_REFRESH_TOKEN
+      ) {
+        throw new Error("Missing YouTube OAuth environment variables");
       }
-
-      logger.info("🔐 OAuth credentials validated");
 
       const oauth2Client = new google.auth.OAuth2(
         process.env.YOUTUBE_CLIENT_ID,
-        process.env.YOUTUBE_CLIENT_SECRET
+        process.env.YOUTUBE_CLIENT_SECRET,
+        "http://localhost"
       );
 
       oauth2Client.setCredentials({

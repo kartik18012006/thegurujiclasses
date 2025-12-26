@@ -52,13 +52,22 @@ module.exports = async (object) => {
     }
 
     // STEP C — Upload to YouTube
+    if (
+      !process.env.YOUTUBE_CLIENT_ID ||
+      !process.env.YOUTUBE_CLIENT_SECRET ||
+      !process.env.YOUTUBE_REFRESH_TOKEN
+    ) {
+      throw new Error("Missing YouTube OAuth environment variables");
+    }
+
     const oauth2Client = new google.auth.OAuth2(
-      process.env.YT_CLIENT_ID,
-      process.env.YT_CLIENT_SECRET
+      process.env.YOUTUBE_CLIENT_ID,
+      process.env.YOUTUBE_CLIENT_SECRET,
+      "http://localhost"
     );
 
     oauth2Client.setCredentials({
-      refresh_token: process.env.YT_REFRESH_TOKEN,
+      refresh_token: process.env.YOUTUBE_REFRESH_TOKEN,
     });
 
     const youtube = google.youtube({
