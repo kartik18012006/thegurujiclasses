@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users collection
+    match /users/{userId} {
+      allow read, write: if request.auth != null
+                         && request.auth.uid == userId;
+    }
+
+    // Courses collection
+    match /courses/{courseId} {
+      // Teachers can create courses
+      allow create: if request.auth != null
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "teacher";
+
+      // Anyone can read courses
+      allow read: if true;
+
+      // Only course owner can update/delete
+      allow update, delete: if request.auth != null
+        && resource.data.teacherId == request.auth.uid;
+    }
+
+    // Lessons
+    match /lessons/{lessonId} {
+      allow create, update, delete: if request.auth != null;
+      allow read: if true;
+    }
+
+    // Enrollments - nested subcollection: enrollments/{courseId}/students/{studentId}
+    match /enrollments/{courseId} {
+      match /students/{studentId} {
+        // Students can create their own enrollment
+        allow create: if request.auth != null
+          && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "student"
+          && request.auth.uid == studentId;
+
+        // Teachers can read enrollments for their courses
+        // Students can read their own enrollment
+        allow read: if request.auth != null
+          && (
+            // Student reading their own enrollment
+            (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "student"
+             && request.auth.uid == studentId)
+            ||
+            // Teacher reading enrollments for their course
+            (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "teacher"
+             && exists(/databases/$(database)/documents/courses/$(courseId))
+             && get(/databases/$(database)/documents/courses/$(courseId)).data.teacherId == request.auth.uid)
+          );
+      }
+    }
+
+    // Student Progress - nested subcollection: studentProgress/{studentId}/courses/{courseId}/lessons/{lessonId}
+    match /studentProgress/{studentId} {
+      match /courses/{courseId} {
+        // Students can read/write their own progress
+        allow read, write: if request.auth != null
+          && request.auth.uid == studentId;
+
+        match /lessons/{lessonId} {
+          // Students can read/write their own lesson progress
+          allow read, write: if request.auth != null
+            && request.auth.uid == studentId;
+
+          // Teachers can read progress for their courses
+          allow read: if request.auth != null
+            && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "teacher"
+            && exists(/databases/$(database)/documents/courses/$(courseId))
+            && get(/databases/$(database)/documents/courses/$(courseId)).data.teacherId == request.auth.uid;
+        }
+      }
+    }
+  }
+}
