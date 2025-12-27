@@ -5,6 +5,7 @@ import { db } from '../../firebase/firebase';
 import { useAuth } from '../../context/AuthContext';
 import StudentNav from '../../components/StudentNav';
 import CustomVideoPlayer from '../../components/CustomVideoPlayer';
+import { initiatePayment } from '../../services/payment';
 
 const StudentCourseDetail = () => {
   const { courseId } = useParams();
@@ -324,8 +325,32 @@ const StudentCourseDetail = () => {
         throw new Error('User profile is incomplete. Missing name or email.');
       }
       
-      // Simulate payment success
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Get course price
+      const coursePrice = course?.price || 0;
+      
+      // If course has a price, initiate payment
+      if (coursePrice > 0) {
+        try {
+          const paymentResult = await initiatePayment(
+            coursePrice,
+            course?.title || 'Course',
+            courseId,
+            currentUser.uid,
+            userProfile.name,
+            userProfile.email
+          );
+          
+          if (!paymentResult.success) {
+            throw new Error(paymentResult.error || 'Payment failed');
+          }
+        } catch (paymentError) {
+          if (paymentError.error === 'Payment cancelled by user') {
+            setEnrollmentError('Payment was cancelled. Please try again when ready.');
+            return;
+          }
+          throw paymentError;
+        }
+      }
       
       // STRICT: Write ONLY to enrollments/{courseId}/students/{user.uid}
       // Payload MUST match Firestore rules
