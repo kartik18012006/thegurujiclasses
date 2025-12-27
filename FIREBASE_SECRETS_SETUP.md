@@ -59,3 +59,4 @@ If you prefer the older config method, you would need to:
 
 However, **secrets are recommended** for sensitive data like OAuth credentials.
 
+

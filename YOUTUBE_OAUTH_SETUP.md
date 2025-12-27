@@ -125,3 +125,4 @@ The secrets will be automatically:
 ✅ **Deploy after setting secrets** - `firebase deploy --only functions`  
 ✅ **Secrets are secure** - Stored in Google Secret Manager
 
+
