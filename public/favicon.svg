@@ -1,0 +1,34 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dark blue background -->
+  <rect width="64" height="64" rx="8" fill="#1e3a8a"/>
+  
+  <!-- GURU text in white -->
+  <text x="6" y="28" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" letter-spacing="0.5">GURU</text>
+  
+  <!-- JI text in orange -->
+  <text x="36" y="28" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#f97316" letter-spacing="0.5">JI</text>
+  
+  <!-- Atom icon replacing the dot of 'i' in JI -->
+  <g transform="translate(50, 16)">
+    <!-- Nucleus (red) -->
+    <circle cx="0" cy="0" r="2.5" fill="#dc2626"/>
+    
+    <!-- Orbit 1 (light blue) -->
+    <ellipse cx="0" cy="0" rx="7" ry="3.5" stroke="#60a5fa" stroke-width="1.2" fill="none" opacity="0.9"/>
+    <!-- Electron on orbit 1 (yellow) -->
+    <circle cx="7" cy="0" r="1.8" fill="#fbbf24"/>
+    
+    <!-- Orbit 2 (rotated 60 degrees) -->
+    <ellipse cx="0" cy="0" rx="7" ry="3.5" stroke="#60a5fa" stroke-width="1.2" fill="none" opacity="0.9" transform="rotate(60)"/>
+    <!-- Electron on orbit 2 -->
+    <circle cx="6.06" cy="3.5" r="1.8" fill="#fbbf24"/>
+    
+    <!-- Orbit 3 (rotated -60 degrees) -->
+    <ellipse cx="0" cy="0" rx="7" ry="3.5" stroke="#60a5fa" stroke-width="1.2" fill="none" opacity="0.9" transform="rotate(-60)"/>
+    <!-- Electron on orbit 3 -->
+    <circle cx="6.06" cy="-3.5" r="1.8" fill="#fbbf24"/>
+  </g>
+  
+  <!-- CLASSES text in white (smaller, below) -->
+  <text x="6" y="44" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="white" letter-spacing="0.3">CLASSES</text>
+</svg>
