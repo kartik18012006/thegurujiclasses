@@ -24,15 +24,15 @@ Razorpay payment gateway has been successfully integrated into the EdTech platfo
 
 ## 🔑 Configuration
 
-### Current Keys (Test Mode)
-- **Key ID**: `rzp_test_RwYH3q9VfgWuE2`
-- **Key Secret**: `0JCjKpjeVNFWiAbRnwpyBowL`
+### Current Keys (Live Mode)
+- **Key ID**: `rzp_live_Rwikp6Zp3Uderj`
+- **Key Secret**: `Ydy9j8fCnc7AwWAK2xT0iQFs`
 
 ### Environment Variables (Optional)
 Create a `.env` file in the root directory:
 ```
-VITE_RAZORPAY_KEY_ID=rzp_test_RwYH3q9VfgWuE2
-VITE_RAZORPAY_KEY_SECRET=0JCjKpjeVNFWiAbRnwpyBowL
+VITE_RAZORPAY_KEY_ID=rzp_live_Rwikp6Zp3Uderj
+VITE_RAZORPAY_KEY_SECRET=Ydy9j8fCnc7AwWAK2xT0iQFs
 ```
 
 **Note**: `.env` files are already in `.gitignore` and won't be committed.
@@ -62,33 +62,25 @@ VITE_RAZORPAY_KEY_SECRET=0JCjKpjeVNFWiAbRnwpyBowL
 
 - API keys are stored in environment variables
 - Keys are not hardcoded in production code
-- Test keys are provided as fallback for development
-- For production, use live keys from Razorpay dashboard
+- Live keys are configured and active
+- **Important**: Never commit live keys to version control
 
 ## 📝 Next Steps
 
-1. **Test Payment Flow**:
-   - Use Razorpay test cards: https://razorpay.com/docs/payments/test-cards/
-   - Test successful payment
+1. **Live Payment Testing**:
+   - Test with real payment (small amount)
+   - Verify payment success flow
    - Test payment cancellation
 
-2. **Production Setup**:
-   - Get live API keys from Razorpay dashboard
-   - Update environment variables with live keys
-   - Test with real payment (small amount)
-
-3. **Payment Verification** (Optional):
+2. **Payment Verification** (Optional):
    - Implement webhook handler for payment verification
    - Store payment records in Firestore
    - Add payment history to student profile
 
-## 🧪 Test Cards
-
-Use these test cards for testing:
-- **Success**: 4111 1111 1111 1111
-- **Failure**: 4000 0000 0000 0002
-- **CVV**: Any 3 digits
-- **Expiry**: Any future date
+3. **Monitoring**:
+   - Monitor payment success rates
+   - Set up alerts for failed payments
+   - Review transaction logs in Razorpay dashboard
 
 ## 📚 Documentation
 
