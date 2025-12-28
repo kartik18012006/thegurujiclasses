@@ -102,41 +102,73 @@ const Landing = () => {
               </div>
             </div>
 
-            {/* Right Column - Minimalist Line Icons */}
+            {/* Right Column - Floating Study Items */}
             <div className="relative h-[600px] hidden lg:block">
-              {/* Book Icon - Top Right */}
-              <div className="absolute top-10 right-20 w-32 h-32 flex items-center justify-center animate-float">
-                <svg className="w-full h-full text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                </svg>
+              {/* Notebook - Top Right */}
+              <div className="absolute top-10 right-20 w-48 h-64 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-lg shadow-2xl transform rotate-12 hover:rotate-6 transition-transform duration-500 animate-float">
+                <div className="p-6 h-full flex flex-col">
+                  <div className="h-1 w-12 bg-blue-400 rounded mb-4"></div>
+                  <div className="space-y-2 flex-1">
+                    <div className="h-1 w-full bg-blue-300 rounded"></div>
+                    <div className="h-1 w-3/4 bg-blue-200 rounded"></div>
+                    <div className="h-1 w-full bg-blue-300 rounded"></div>
+                    <div className="h-1 w-2/3 bg-blue-200 rounded"></div>
+                  </div>
+                  <div className="mt-4 flex gap-2">
+                    <div className="w-8 h-8 bg-blue-500 rounded"></div>
+                    <div className="w-8 h-8 bg-indigo-500 rounded"></div>
+                  </div>
+                </div>
               </div>
 
-              {/* Chart Icon - Middle Right */}
-              <div className="absolute top-32 right-32 w-28 h-28 flex items-center justify-center animate-float">
-                <svg className="w-full h-full text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
-                </svg>
+              {/* Pen - Center Left */}
+              <div className="absolute top-1/2 left-10 -translate-y-1/2 w-8 h-48 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 rounded-full shadow-xl transform -rotate-12 hover:rotate-0 transition-transform duration-500 animate-float-delay">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-yellow-400 rounded-full"></div>
               </div>
 
-              {/* Graduation Cap Icon - Center Left */}
-              <div className="absolute top-1/2 left-10 -translate-y-1/2 w-24 h-24 flex items-center justify-center animate-float-delay">
-                <svg className="w-full h-full text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 0L3 3m0 0l3 3M3 3h12.75M12 3v12.75" />
-                </svg>
+              {/* Stationery Set - Bottom Right */}
+              <div className="absolute bottom-20 right-10 flex gap-4 animate-float-delay-2">
+                {/* Ruler */}
+                <div className="w-32 h-6 bg-gradient-to-r from-yellow-400 to-orange-400 rounded shadow-lg transform rotate-6 hover:rotate-0 transition-transform duration-500">
+                  <div className="h-full flex items-center justify-between px-2">
+                    {[1, 2, 3, 4, 5, 6].map((num) => (
+                      <div key={num} className="h-4 w-px bg-white"></div>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Pencil */}
+                <div className="w-6 h-24 bg-gradient-to-b from-yellow-500 via-orange-500 to-red-500 rounded-full shadow-lg transform -rotate-12 hover:rotate-0 transition-transform duration-500">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-800 rounded-full"></div>
+                </div>
               </div>
 
-              {/* Shield/Target Icon - Bottom Right */}
-              <div className="absolute bottom-20 right-10 w-24 h-24 flex items-center justify-center animate-float-delay-2">
-                <svg className="w-full h-full text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                </svg>
+              {/* Calculator - Top Left */}
+              <div className="absolute top-32 left-20 w-32 h-40 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg shadow-xl transform -rotate-6 hover:rotate-0 transition-transform duration-500 animate-float">
+                <div className="p-3 h-full flex flex-col">
+                  <div className="h-8 bg-gray-800 rounded mb-2 flex items-center justify-end px-2">
+                    <span className="text-white text-xs font-mono">123</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-1 flex-1">
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+                      <div key={num} className="bg-white rounded text-center text-xs py-2 font-semibold text-gray-700">
+                        {num}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              {/* Lightbulb Icon - Bottom Left */}
-              <div className="absolute bottom-10 left-16 w-20 h-20 flex items-center justify-center animate-float-delay-2">
-                <svg className="w-full h-full text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m4.5 0a12.05 12.05 0 003-3.478m-3-3.478a12.05 12.05 0 00-3 3.478m3-3.478a12.05 12.05 0 013 3.478m0 0a12.06 12.06 0 004.5 0m-4.5 0a12.05 12.05 0 003-3.478" />
-                </svg>
+              {/* Book Stack - Bottom Left */}
+              <div className="absolute bottom-10 left-16 space-y-1 animate-float-delay-2">
+                <div className="w-24 h-6 bg-gradient-to-r from-indigo-500 to-purple-500 rounded shadow-lg transform rotate-3"></div>
+                <div className="w-24 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded shadow-lg transform -rotate-2"></div>
+                <div className="w-24 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded shadow-lg transform rotate-1"></div>
+              </div>
+
+              {/* Highlighter - Center Right */}
+              <div className="absolute top-1/3 right-32 w-40 h-8 bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-300 rounded-full shadow-lg transform rotate-45 hover:rotate-12 transition-transform duration-500 animate-float">
+                <div className="absolute top-0 right-0 w-4 h-4 bg-yellow-600 rounded-full"></div>
               </div>
             </div>
           </div>
